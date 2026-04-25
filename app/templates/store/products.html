@@ -1,0 +1,73 @@
+{% extends "store/base.html" %}
+
+{% block title %}{{ t('products') }}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="catalog-header">
+
+    <div class="catalog-title">
+        <span class="label-tag">{{ t('products') }}</span>
+    </div>
+
+    <form method="GET" action="/products" class="filters-form">
+
+        <div class="filters-group">
+
+            <input
+                type="text"
+                name="search"
+                class="filters-input"
+                placeholder="Buscar producto..."
+                value="{{ request.args.get('search', '') }}"
+            >
+
+            <button type="submit" class="btn-search">
+                Buscar
+            </button>
+
+            {% if request.args.get('search') or request.args.get('category') %}
+                <a href="/products" class="btn-ghost">
+                    Limpiar
+                </a>
+            {% endif %}
+
+        </div>
+
+    </form>
+
+</section>
+
+<section>
+    <div class="categories-grid">
+        {% for cat in categories %}
+            <a class="cat-card" href="/products?category={{ cat.name }}">
+                <div class="cat-name">{{ cat.name }}</div>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+
+<div class="product-grid">
+    {% for product in products %}
+        <div class="product-card">
+            <div class="product-img">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+            </div>
+            <div class="product-body">
+                <div class="product-name">{{ product.name }}</div>
+                <div class="product-price">${{ product.price }}</div>
+            </div>
+            <a class="product-btn" href="/product/{{ product.id }}">Ver producto</a>
+        </div>
+    {% endfor %}
+</div>
+
+{% from "components/pagination.html" import render_pagination %}
+
+{{ render_pagination(pagination) }}
+
+{% endblock %}

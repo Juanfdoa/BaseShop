@@ -1,0 +1,19 @@
+:root {
+  /* ── Neutrales ── */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-border: #e0ddd8;
+
+  /* ── Texto ── */
+  --color-text-primary: #1a1a18;
+  --color-text-secondary: #444441;
+  --color-text-muted: #888780;
+  --color-text-inverse: #f5f4f2;
+
+  /* ── Marca / acento ── */
+  --color-primary: #3d5a80;
+  --color-primary-dark: #2c4a6e;
+
+  /* ── Superficies especiales ── */
+  --color-soft: #e8eef4;
+}

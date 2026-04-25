@@ -1,0 +1,30 @@
+<form class="ajax-form"
+      action="{{ url_for('admin_product.create_product') if not product else url_for('admin_product.update_product', id=product.id) }}"
+      method="POST"
+      enctype="multipart/form-data">
+
+    <!-- CATEGORY -->
+    <select name="category_id" required>
+        <option value="">Selecciona categoría</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}"
+                {% if product and product.category_id == category.id %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <input name="name" placeholder="Nombre" value="{{ product.name if product else '' }}" required />
+    <input name="description" placeholder="Descripcion" value="{{ product.description if product else '' }}" required />
+    <input type="number" name="price" placeholder="Precio" value="{{ product.price if product else '' }}" required />
+    <input name="brand" placeholder="Marca" value="{{ product.brand if product else '' }}" required />
+    <input type="file" name="image" accept="image/*"/>
+    <input type="hidden" name="current_image" value="{{ product.image if product else '' }}" />
+    <input type="checkbox" name="trend" value="true"{% if product and product.trend %}checked{% endif %}>
+ 
+
+    <button type="submit">
+        {{ "Actualizar" if product else "Guardar" }}
+    </button>
+
+</form>

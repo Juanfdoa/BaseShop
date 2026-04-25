@@ -1,0 +1,21 @@
+<form class="ajax-form"
+      action="{{ url_for('admin_category.create_category') if not category else url_for('admin_category.update_category', id=category.id) }}"
+      method="POST">
+
+    <input name="name" placeholder="Nombre" value="{{ category.name if category else '' }}" required />
+    <select name="icon" required>
+    <option value="">Selecciona un ícono</option>
+        <option value="https://api.iconify.design/emojione-monotone/running-shoe.svg"    {{ 'selected' if category and category.icon == 'https://api.iconify.design/emojione-monotone/running-shoe.svg' }}>👟 Shoes</option>
+        <option value="https://api.iconify.design/ant-design/thunderbolt-outlined.svg"   {{ 'selected' if category and category.icon == 'https://api.iconify.design/ant-design/thunderbolt-outlined.svg' }}>⚡ Electronics</option>
+        <option value="https://api.iconify.design/emojione-monotone/couch-and-lamp.svg"  {{ 'selected' if category and category.icon == 'https://api.iconify.design/emojione-monotone/couch-and-lamp.svg' }}>🛋️ Furniture</option>
+        <option value="https://api.iconify.design/pepicons-pencil/house.svg"             {{ 'selected' if category and category.icon == 'https://api.iconify.design/pepicons-pencil/house.svg' }}>🏠 Home</option>
+        <option value="https://api.iconify.design/game-icons/emerald-necklace.svg"       {{ 'selected' if category and category.icon == 'https://api.iconify.design/game-icons/emerald-necklace.svg' }}>💎 Accessories</option>
+        <option value="https://api.iconify.design/pepicons-pencil/t-shirt.svg"           {{ 'selected' if category and category.icon == 'https://api.iconify.design/pepicons-pencil/t-shirt.svg' }}>👔 Clothing</option>
+        <option value="https://api.iconify.design/mdi/dots-horizontal.svg"               {{ 'selected' if category and category.icon == 'https://api.iconify.design/mdi/dots-horizontal.svg' }}>• • • Otros</option>
+    </select>
+
+    <button type="submit">
+        {{ "Actualizar" if category else "Guardar" }}
+    </button>
+
+</form>

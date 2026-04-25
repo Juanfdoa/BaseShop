@@ -1,0 +1,108 @@
+/* ───────── HEADER ───────── */
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ── SEARCH ── */
+.search-box {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.search-box input {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    outline: none;
+    min-width: 240px;
+    font-size: 14px;
+}
+
+.search-box input:focus {
+    border-color: var(--color-primary);
+}
+
+/* BOTONES */
+.btn-search {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-clear {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* ───────── CONTENEDOR MÁS ANCHO ───────── */
+/* 👇 esto hace que NO se vea tan centrado/estrecho */
+.products-container {
+    width: 100%;
+    max-width: 100%;   /* 👈 elimina límite */
+}
+
+.btn-clear:hover {
+    background: #e5e7eb;
+}
+
+/* ───────── RESPONSIVE ───────── */
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .search-box input {
+        min-width: 180px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .products-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        flex: 1;
+        width: 100%;
+    }
+
+    .btn-search {
+        background: var(--color-primary);
+        color: white;
+        border: none;
+        padding: 0.6rem 0.9rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .btn-clear {
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        padding: 0.6rem 0.9rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}

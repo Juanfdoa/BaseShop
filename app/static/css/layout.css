@@ -1,0 +1,486 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* BODY */
+body {
+    background: var(--color-background);
+}
+
+/* ───────── WRAPPER ───────── */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ───────── SIDEBAR ───────── */
+.sidebar {
+    width: 260px; /* 👈 un poco más ancho */
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 0; /* 👈 aire interno */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+
+/* LOGO */
+.sidebar-logo {
+    padding: 1.5rem 1.8rem;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* MENU */
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* 👈 separa links */
+}
+
+.sidebar-menu a {
+    padding: 0.8rem 1.8rem;
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    border-radius: 8px;
+    margin: 0 0.8rem; /* 👈 separa del borde */
+    transition: all 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: var(--color-background);
+    color: var(--color-text-primary);
+}
+
+/* FOOTER */
+.sidebar-footer {
+    padding: 1rem 1.8rem;
+    border-top: 1px solid var(--color-border);
+}
+
+/* ───────── MAIN ───────── */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    margin-left: 260px;
+    width: calc(100% - 260px); /* 👈 CLAVE */
+    height: 100vh;
+}
+
+/* ───────── TOPBAR ───────── */
+.topbar {
+    height: 60px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    position: sticky;
+    top: 1rem; /* o 0 si quieres pegada */
+    z-index: 10;
+}
+
+.topbar h3 {
+    font-size: 16px;
+    color: var(--color-text-primary);
+}
+
+.topbar-right {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ───────── CONTENT ───────── */
+.content {
+    flex: 1;
+    width: 100%;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* BOTÓN HAMBURGUESA */
+.menu-toggle {
+    display: none;
+    font-size: 20px;
+    background: none;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 40px 0;
+}
+
+/* botones flecha */
+.page-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    color: #333;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.page-btn:hover {
+    background: #f2f2f2;
+}
+
+/* números */
+.page-number {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    color: #333;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.page-number:hover {
+    background: #f2f2f2;
+}
+
+/* página activa */
+.page-number.active {
+    background: #111;
+    color: white;
+    border-color: #111;
+}
+
+/* ───────── ACCORDION ───────── */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 12px;
+}
+
+/* ITEM */
+.accordion-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.accordion-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+/* HEADER */
+.accordion-header {
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* FLECHA */
+.arrow {
+    transition: transform 0.2s;
+}
+
+/* BODY */
+.accordion-body {
+    padding: 1rem 1.2rem;
+    border-top: 1px solid var(--color-border);
+    display: none;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ───────── CONTENIDO 2 COLUMNAS ───────── */
+.accordion-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* COLUMNA IZQUIERDA (IMAGEN) */
+.accordion-left {
+    width: 180px;
+    flex-shrink: 0;
+}
+
+/* IMAGEN */
+.accordion-image {
+    width: 90%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* COLUMNA DERECHA (DATA) */
+.accordion-right {
+    flex: 1;
+}
+
+/* ACTIVO */
+.accordion-item.active .accordion-body {
+    display: block;
+}
+
+.accordion-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+/* ACCIONES */
+.actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--color-text-muted);
+    border: 0.5px solid var(--color-border);
+    padding: .6rem 1.25rem;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: border-color .15s, color .15s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* BOTON AGREGAR*/
+.btn-add {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* BOTONES ACCORDION*/
+.btn-edit {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-delete {
+    background: #fee2e2;
+    color: #991b1b;
+    border: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* HOVER */
+.btn-edit:hover,
+.btn-delete:hover,
+.btn-search:hover,
+.btn-add:hover {
+    opacity: 0.9;
+}
+
+/* ───────── MODAL ───────── */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 2000;
+}
+
+.modal.active {
+    display: block;
+}
+
+/* overlay */
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+/* container */
+.modal-container {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    margin: 80px auto;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    animation: fadeIn 0.2s ease;
+}
+
+/* header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* body */
+.modal-body {
+    padding: 1.2rem; /* 👈 más aire */
+}
+
+/* ───────── FORM ───────── */
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-body input,
+.modal-body select,
+.modal-body textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.modal-body input:focus,
+.modal-body select:focus,
+.modal-body textarea:focus {
+    border-color: #999;
+}
+
+/* botón */
+.modal-body button {
+    margin-top: 5px;
+    padding: 10px;
+    border: none;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ───────── RESPONSIVE ───────── */
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .content {
+        max-width: 100%;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .topbar-left {
+        display: flex;
+        align-items: center;
+    }
+
+    /* SIDEBAR COMO OVERLAY */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -260px; /* 👈 oculto */
+        height: 100%;
+        width: 260px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* CUANDO ESTÁ ACTIVO */
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* FONDO OSCURO */
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.3);
+        display: none;
+        z-index: 900;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+
+    .accordion-content {
+        flex-direction: column;
+    }
+
+    .accordion-left {
+        width: 100%;
+    }
+
+    .accordion-image {
+        height: 200px;
+    }
+
+    .btn-add {
+        width: 100%;
+        text-align: center;
+    }
+}

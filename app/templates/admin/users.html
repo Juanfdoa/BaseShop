@@ -1,0 +1,35 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Usuarios{% endblock %}
+{% block page_title %}Usuarios{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="user-container">
+        <div class="user-header">
+            <!-- BOTÓN AGREGAR -->
+            <button
+                data-modal
+                data-title="Crear usuario"
+                data-url="{{ url_for('admin_user.user_form') }}"
+                class="btn-add">
+                + Agregar Usuario
+            </button>
+        </div>
+    <!-- LISTA -->
+        {% from "components/accordion.html" import render_items %}
+
+        {% for user in users %}
+            {{ render_items(user, "user") }}
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/accordion.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endblock %}

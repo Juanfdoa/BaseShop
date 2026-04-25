@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    {% block styles %}{% endblock %}
+</head>
+<body>
+
+<div class="admin-wrapper">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h2>BaseShop</h2>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="{{ url_for('admin_dashboard.dashboard') }}">🏠 Dashboard</a>
+            <a href="{{ url_for('admin_user.users') }}">👤 Usuarios</a>
+            <a href="{{ url_for('admin_category.categories') }}">🏷️ Categorías</a>
+            <a href="{{ url_for('admin_product.products') }}">📦 Productos</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a class="btn-ghost" href="{{ url_for('auth.logout') }}">🚪 Logout</a>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <button id="menu-toggle" class="menu-toggle">☰</button>
+                <h3>{% block page_title %}Dashboard{% endblock %}</h3>
+            </div>
+
+            <div class="topbar-right">
+                <span>{{ session.get('user') }}</span>
+                <img src="{{ session.get('image') }}" width="40" height="40" alt="icon"> 
+            </div>
+
+        </header>
+
+        <!-- CONTENT -->
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+
+    </div>
+
+</div>
+
+<div id="modal" class="modal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <div class="modal-container">
+
+        <!-- HEADER -->
+        <div class="modal-header">
+            <h3 id="modalTitle">Título</h3>
+            <button id="closeModal" class="modal-close">&times;</button>
+        </div>
+
+        <!-- BODY DINÁMICO -->
+        <div class="modal-body" id="modalBody">
+            <!-- aquí se inyecta el form -->
+        </div>
+
+    </div>
+</div>
+
+<div id="overlay" class="overlay"></div>
+<script src="{{ url_for('static', filename='js/pagination.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

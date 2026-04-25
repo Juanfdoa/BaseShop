@@ -1,0 +1,61 @@
+{% extends "store/base.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/product_details.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ───────────────────────────── -->
+<!-- PRODUCT DETAIL -->
+<!-- ───────────────────────────── -->
+<section class="product-detail">
+
+    <!-- IMAGEN -->
+    <div class="product-detail-image">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+    </div>
+
+    <!-- INFO -->
+    <div class="product-detail-info">
+
+        {% if product.category %}
+            <span class="product-category">
+                {{ product.category.name }}
+            </span>
+        {% endif %}
+
+        <h1 class="product-title">
+            {{ product.name }}
+        </h1>
+
+        <p class="product-description">
+            {{ product.description }}
+        </p>
+
+        {% if product.price %}
+            <div class="product-price">
+                ${{ product.price }}
+            </div>
+        {% endif %}
+
+        <a href="https://wa.me/573042151283?text=Hola!%20Estoy%20interesado%20en%20este%20producto:%20{{ product.name }}" target="_blank" class="whatsapp-btn">
+            <img src="https://api.iconify.design/logos/whatsapp-icon.svg" width="50px" height="50px" alt="whatsapp">
+        </a>
+
+        <!-- ACTIONS -->
+        <div class="product-actions">
+
+            <a href="/products" class="btn-ghost">
+                ← Volver
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

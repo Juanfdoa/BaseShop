@@ -1,0 +1,47 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- KPIs -->
+<div class="kpi-grid">
+
+    <div class="kpi-card">
+        <h4>Usuarios</h4>
+        {% if stats %}
+            <p>{{ stats.users }}</p>
+        {% else %}
+            <p>0</p>
+        {% endif %}
+    </div>
+
+    <div class="kpi-card">
+        <h4>Categorías</h4>
+        {% if stats %}
+            <p>{{ stats.categories }}</p>
+        {% else %}
+            <p>0</p>
+        {% endif %}
+    </div>
+
+    <div class="kpi-card">
+        <h4>Productos</h4>
+        {% if stats %}
+            <p>{{ stats.products }}</p>
+        {% else %}
+            <p>0</p>
+        {% endif %}
+    </div>
+
+</div>
+
+
+</div>
+
+{% endblock %}

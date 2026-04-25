@@ -1,0 +1,56 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Productos{% endblock %}
+{% block page_title %}Productos{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_products.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="products-container">
+
+<div class="products-header">
+    <!-- BUSCADOR -->
+    <div class="search-box">
+        <form method="GET" action="/admin/products">
+            <input type="text" name="search" value="{{ request.args.get('search', '') }}" placeholder="Buscar producto...">
+
+            <button type="submit" class="btn-search">Buscar</button>
+
+            {% if request.args.get('search') or request.args.get('category') %}
+                    <a href="/admin/products" class="btn-clear">Limpiar</a>
+            {% endif %}
+        </form>
+    </div>
+
+    <!-- BOTÓN AGREGAR -->
+     <button
+        data-modal
+        data-title="Crear Producto"
+        data-url="{{ url_for('admin_product.product_form') }}"
+        class="btn-add">
+        + Agregar producto
+    </button>
+</div>
+
+<!-- LISTA -->
+{% from "components/accordion.html" import render_items %}
+
+{% for product in products %}
+    {{ render_items(product, "product") }}
+{% endfor %}
+
+</div>
+
+{% from "components/pagination.html" import render_pagination %}
+
+{{ render_pagination(pagination) }}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/accordion.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,22 @@
+<form class="ajax-form"
+      action="{{ url_for('admin_user.create_user') if not user else url_for('admin_user.update_user', id=user.id) }}"
+      method="POST">
+
+    <input name="name" placeholder="Nombre" value="{{ user.name if user else '' }}" required />
+    <input name="lastname" placeholder="Apellido" value="{{ user.lastname if user else '' }}" required />
+    <input type="email" name="email" placeholder="Email" value="{{ user.email if user else '' }}" required />
+    <input type="password" name="password" placeholder="Contraseña" value="{{ '' if user else '' }}" />
+    <select name="image" required onchange="document.getElementById('avatar-preview').src = this.value">
+        <option value="">Selecciona un avatar</option>
+        <option value="https://api.iconify.design/mdi/account.svg"              {{ 'selected' if user and user.image == 'https://api.iconify.design/mdi/account.svg' }}>account</option>
+        <option value="https://api.iconify.design/mdi/account-circle.svg"       {{ 'selected' if user and user.image == 'https://api.iconify.design/mdi/account-circle.svg' }}>account-circle</option>
+        <option value="https://api.iconify.design/mdi/robot.svg"                {{ 'selected' if user and user.image == 'https://api.iconify.design/mdi/robot.svg' }}>robot</option>
+        <option value="https://api.iconify.design/mdi/ninja.svg"                {{ 'selected' if user and user.image == 'https://api.iconify.design/mdi/ninja.svg' }}>ninja</option>
+        <option value="https://api.iconify.design/mdi/ghost.svg"                {{ 'selected' if user and user.image == 'https://api.iconify.design/mdi/ghost.svg' }}>ghost</option>
+    </select>
+    <img id="avatar-preview" src="{{ user.image if user else 'https://api.iconify.design/mdi/account.svg' }}" width="48" height="48" />
+    <button type="submit">
+        {{ "Actualizar" if user else "Guardar" }}
+    </button>
+
+</form>

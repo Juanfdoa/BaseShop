@@ -1,0 +1,35 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Categorias{% endblock %}
+{% block page_title %}Categorias{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_categories.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="categories-container">
+        <div class="category-header">
+            <!-- BOTÓN AGREGAR -->
+            <button
+                data-modal
+                data-title="Crear categoria"
+                data-url="{{ url_for('admin_category.category_form') }}"
+                class="btn-add">
+                + Agregar Categoria
+            </button>
+        </div>
+    <!-- LISTA -->
+        {% from "components/accordion.html" import render_items %}
+
+        {% for category in categories %}
+            {{ render_items(category, "categorie") }}
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/accordion.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endblock %}

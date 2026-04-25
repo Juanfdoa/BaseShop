@@ -1,0 +1,143 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* WRAPPER */
+.login-wrapper {
+    display: flex;
+    height: 100vh;
+    background-image: url('../images/fondo.png');
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    background-repeat: no-repeat;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    opacity: 1; /* ¡Cuidado! Tenías 0, lo que hace el cuerpo invisible */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* ───────── LEFT (60%) ───────── */
+.login-left {
+    flex: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    padding: 2rem;
+}
+
+/* WRAPPER */
+.login-image-wrapper {
+    width: 100%;
+    max-width: 500px; /* 👈 controla el tamaño máximo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* IMAGEN */
+.login-image-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* 👈 no se deforma */
+}
+
+/* ───────── RIGHT (40%) ───────── */
+.login-right {
+    flex: 4; /* 👈 40% */
+    background: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CARD */
+.login-card {
+    background: var(--color-surface);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 380px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+}
+
+/* TITULO */
+.login-card h2 {
+    margin-bottom: 1.5rem;
+    color: var(--color-text-primary);
+}
+
+/* INPUTS */
+.login-card input {
+    width: 100%;
+    padding: 0.9rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    font-size: 14px;
+    outline: none;
+}
+
+.login-card input:focus {
+    border-color: var(--color-primary);
+}
+
+/* BOTÓN */
+.login-card button {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-primary);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    opacity: 0.9;
+}
+
+.alert {
+    color: #991b1b;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 12px;
+}
+
+/* ───────── RESPONSIVE ───────── */
+@media (max-width: 768px) {
+
+    .login-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--color-background);
+    }
+
+    .login-left {
+        display: none; /* 👈 ocultamos imagen */
+    }
+
+    .login-right {
+        flex: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 400px;
+
+        /* 👇 IMPORTANTE: mantener card visible */
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 2rem;
+    }
+}

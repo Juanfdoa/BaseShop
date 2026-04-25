@@ -1,0 +1,13 @@
+.categories-container {
+    width: 100%;
+    max-width: 100%;  
+}
+
+.category-header {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}

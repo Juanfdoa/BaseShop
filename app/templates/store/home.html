@@ -1,0 +1,152 @@
+{% extends "store/base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Slider -->
+<div class="slider-wrap">
+    <div class="slider-track" id="sliderTrack">
+
+        <div class="slide slide-1">
+            <span class="slide-tag">Nueva colección</span>
+            <h2 class="slide-title">Estilo que<br><span>habla por ti</span></h2>
+            <p class="slide-sub">Descubre piezas únicas seleccionadas para quienes no siguen tendencias, las crean.</p>
+            <a class="slide-btn" href="/products">Ver colección</a>
+        </div>
+
+        <div class="slide slide-2">
+            <span class="slide-tag">Destacados</span>
+            <h2 class="slide-title">Calidad sin<br>compromisos</h2>
+            <p class="slide-sub">Cada producto pasa por un proceso de selección riguroso antes de llegar a tus manos.</p>
+            <a class="slide-btn" href="/products">Explorar</a>
+        </div>
+
+        <div class="slide slide-3">
+            <span class="slide-tag">Envío gratis</span>
+            <h2 class="slide-title">Compra hoy,<br>recibe mañana</h2>
+            <p class="slide-sub">Envío gratuito en pedidos mayores a $150.000. Rápido, seguro y sin sorpresas.</p>
+            <a class="slide-btn" href="/products">Comprar ahora</a>
+        </div>
+
+    </div>
+
+    <button class="slider-arrow slider-arrow--left" id="prevBtn">&#8592;</button>
+    <button class="slider-arrow slider-arrow--right" id="nextBtn">&#8594;</button>
+
+    <div class="slider-nav">
+        <button class="dot-nav active" data-i="0"></button>
+        <button class="dot-nav" data-i="1"></button>
+        <button class="dot-nav" data-i="2"></button>
+    </div>
+</div>
+
+<!-- Productos destacados -->
+<p class="section-label">Productos destacados</p>
+<div class="featured-grid">
+    {% for product in featured %}
+        <div class="feat-card">
+            <div class="feat-img">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+            </div>
+            <div class="feat-body">
+                <div class="feat-name">{{ product.name }}</div>
+                <div class="feat-price">${{ product.price }}</div>
+            </div>
+            <a class="feat-btn" href="/product/{{ product.id }}">Ver producto</a>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Categorías -->
+<p class="section-label">Categorías</p>
+<div class="categories-grid">
+    {% for cat in categories %}
+        <a class="cat-card" href="/products?category={{ cat.name }}">
+            <div class="cat-icon"><img src="{{ cat.icon }}" width="40px" height="40px"/></div>
+            <div class="cat-name">{{ cat.name }}</div>
+            <div class="cat-count">{{ cat.count }} products</div>
+        </a>
+    {% endfor %}
+</div>
+
+<!-- Banner CTA -->
+<div class="home-banner">
+    <div class="home-banner-text">
+        <h3>¿Buscas algo específico?</h3>
+        <p>Explora todo el catálogo y encuentra lo que necesitas.</p>
+    </div>
+    <a href="/products" class="btn-primary">Ver catálogo completo</a>
+</div>
+
+<!-- Perks -->
+<p class="section-label">¿Por qué elegirnos?</p>
+<div class="perks">
+    <div class="perk">
+        <div class="perk-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3d5a80" stroke-width="1.5" width="14" height="14">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+            </svg>
+        </div>
+        <div>
+            <div class="perk-title">Envío rápido</div>
+            <div class="perk-desc">Despacho en 24 horas hábiles.</div>
+        </div>
+    </div>
+    <div class="perk">
+        <div class="perk-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3d5a80" stroke-width="1.5" width="14" height="14">
+                <path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/>
+            </svg>
+        </div>
+        <div>
+            <div class="perk-title">Calidad garantizada</div>
+            <div class="perk-desc">Productos verificados y seleccionados.</div>
+        </div>
+    </div>
+    <div class="perk">
+        <div class="perk-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3d5a80" stroke-width="1.5" width="14" height="14">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+            </svg>
+        </div>
+        <div>
+            <div class="perk-title">Soporte real</div>
+            <div class="perk-desc">Respondemos en menos de 24h.</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const track = document.getElementById('sliderTrack');
+    const dots = document.querySelectorAll('.dot-nav');
+    let current = 0;
+    const total = 3;
+    let timer;
+
+    function goTo(i) {
+        current = (i + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+    function startTimer() { timer = setInterval(next, 4000); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+
+    document.getElementById('nextBtn').onclick = () => { next(); resetTimer(); };
+    document.getElementById('prevBtn').onclick = () => { prev(); resetTimer(); };
+    dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); resetTimer(); }));
+
+    startTimer();
+</script>
+{% endblock %}

@@ -1,0 +1,208 @@
+.about-hero {
+    border-bottom: 0.5px solid var(--color-border);
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.about-hero h1 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+}
+
+.about-hero h1 span {
+    color: var(--color-primary);
+}
+
+.about-hero p {
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    max-width: 560px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 2.5rem;
+}
+
+.stat {
+    background: var(--color-bg);
+    border: 0.5px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1;
+}
+
+.stat-number span {
+    font-size: 16px;
+    color: var(--color-primary);
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: .4rem;
+}
+
+.section-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.story {
+    background: var(--color-bg);
+    border: 0.5px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.story-year {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: .5rem;
+    letter-spacing: .04em;
+}
+
+.story p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.85;
+}
+
+.story p + p {
+    margin-top: 1rem;
+}
+
+.values {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 2.5rem;
+}
+
+.value-card {
+    background: var(--color-bg);
+    border: 0.5px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+
+.value-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--color-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .75rem;
+}
+
+.value-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: .3rem;
+}
+
+.value-desc {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.team {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 2.5rem;
+}
+
+.member {
+    background: var(--color-bg);
+    border: 0.5px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-inverse);
+    margin: 0 auto .75rem;
+}
+
+.avatar--blue { background: var(--color-primary); }
+.avatar--mid  { background: var(--color-primary-dark); }
+
+.member-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.member-role {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-top: .2rem;
+}
+
+.about-cta {
+    background: var(--color-text-primary);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.about-cta-text h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text-inverse);
+    margin-bottom: .3rem;
+}
+
+.about-cta-text p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+/* ───────────────────────────── */
+/* RESPONSIVE */
+/* ───────────────────────────── */
+
+/* TABLET */
+@media (max-width: 768px) {
+    .stats        { grid-template-columns: 1fr; }
+    .values       { grid-template-columns: 1fr; }
+    .team         { grid-template-columns: repeat(2, 1fr); }
+    .about-cta    { flex-direction: column; align-items: flex-start; }
+    .about-hero h1 { font-size: 26px; }
+}

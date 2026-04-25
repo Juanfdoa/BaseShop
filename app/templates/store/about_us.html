@@ -1,0 +1,112 @@
+{% extends "store/base.html" %}
+
+{% block title %}{{ t('about_us') }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="about-hero">
+    <span class="label-tag">Nosotros</span>
+    <h1>Construimos tiendas<br>que <span>venden de verdad</span></h1>
+    <p>Somos un equipo pequeño con una obsesión simple: hacer que vender online sea tan natural como recomendar un producto a un amigo. Sin complicaciones, sin fricciones.</p>
+</div>
+
+<div class="stats">
+    <div class="stat">
+        <div class="stat-number">+120<span>k</span></div>
+        <div class="stat-label">Productos gestionados</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">38</div>
+        <div class="stat-label">Tiendas activas</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">4<span>años</span></div>
+        <div class="stat-label">En el mercado</div>
+    </div>
+</div>
+
+<p class="section-title">Nuestra historia</p>
+<div class="story">
+    <div class="story-year">2021 — El comienzo</div>
+    <p>Todo empezó cuando un amigo nos pidió ayuda para montar su tienda online. Después de ver lo complicado y costoso que era, decidimos construir algo diferente: una solución que cualquier persona pudiera manejar sin saber de tecnología.</p>
+    <p>Hoy Base Shop es la plataforma de confianza de decenas de comerciantes en Colombia y Latinoamérica, desde pequeños emprendedores hasta marcas consolidadas que buscan simplicidad sin sacrificar profesionalismo.</p>
+</div>
+
+<p class="section-title">Lo que nos mueve</p>
+<div class="values">
+    <div class="value-card">
+        <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3d5a80" stroke-width="1.5" width="16" height="16">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </svg>
+        </div>
+        <div class="value-title">Simplicidad ante todo</div>
+        <div class="value-desc">Si algo es difícil de usar, lo rediseñamos hasta que no lo sea.</div>
+    </div>
+    <div class="value-card">
+        <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3d5a80" stroke-width="1.5" width="16" height="16">
+                <path d="M9 12l2 2 4-4"/>
+                <circle cx="12" cy="12" r="10"/>
+            </svg>
+        </div>
+        <div class="value-title">Calidad sin excusas</div>
+        <div class="value-desc">Cada línea de código y cada pixel importa para la experiencia final.</div>
+    </div>
+    <div class="value-card">
+        <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3d5a80" stroke-width="1.5" width="16" height="16">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+        </div>
+        <div class="value-title">Comunidad primero</div>
+        <div class="value-desc">El éxito de nuestros clientes es el único éxito que nos importa.</div>
+    </div>
+    <div class="value-card">
+        <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3d5a80" stroke-width="1.5" width="16" height="16">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+        </div>
+        <div class="value-title">Mejora continua</div>
+        <div class="value-desc">Lanzamos, medimos y mejoramos. Sin excusas ni pausas largas.</div>
+    </div>
+</div>
+
+<p class="section-title">El equipo</p>
+<div class="team">
+    <div class="member">
+        <div class="avatar">CA</div>
+        <div class="member-name">Carlos Arias</div>
+        <div class="member-role">Fundador & CEO</div>
+    </div>
+    <div class="member">
+        <div class="avatar avatar--blue">LM</div>
+        <div class="member-name">Laura Mendoza</div>
+        <div class="member-role">Diseño & UX</div>
+    </div>
+    <div class="member">
+        <div class="avatar avatar--mid">JP</div>
+        <div class="member-name">Juan Patiño</div>
+        <div class="member-role">Desarrollo</div>
+    </div>
+</div>
+
+<div class="about-cta">
+    <div class="about-cta-text">
+        <h3>¿Listo para empezar?</h3>
+        <p>Explora el catálogo y descubre lo que tenemos para ti.</p>
+    </div>
+    <a href="/products" class="btn-primary">Ver catálogo</a>
+</div>
+
+{% endblock %}
