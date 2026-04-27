@@ -7,8 +7,11 @@ admin_user_bp = Blueprint('admin_user', __name__)
 @admin_user_bp.route('/admin/users')
 @login_required
 def users():
-    users = get_users()
-    return render_template('/admin/users.html', users=users)
+    try:
+        users = get_users()
+        return render_template('/admin/users.html', users=users)
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @admin_user_bp.route("/admin/users/form")
 @login_required
@@ -18,57 +21,58 @@ def user_form():
 @admin_user_bp.route("/admin/users/create", methods=["POST"])
 @login_required
 def create_user():
-    name = request.form.get("name")
-    lastname = request.form.get("lastname")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    image = request.form.get("image")
+    try:
+        name = request.form.get("name")
+        lastname = request.form.get("lastname")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        image = request.form.get("image")
 
-    new_user = add_user(name,lastname,email,password,image)
-    html = render_template("components/accordion.html", item=new_user)
+        new_user = add_user(name,lastname,email,password,image)
+        html = render_template("components/accordion.html", item=new_user)
 
-    return jsonify({
-        "success": True,
-        "html": html
-    })
+        return jsonify({"success": True,"html": html}), 201
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @admin_user_bp.route("/admin/users/form", defaults={"id": None})
 @admin_user_bp.route("/admin/users/form/<id>")
 @login_required
 def user_form_update(id):
-    user = None
+    try:
+        user = None
 
-    if id:
-        user = get_user_by_id(id)
+        if id:
+            user = get_user_by_id(id)
 
-    return render_template("components/forms/user_form.html", user=user)
+        return render_template("components/forms/user_form.html", user=user)
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @admin_user_bp.route("/admin/users/update/<id>", methods=["POST"])
 @login_required
 def update_user(id):
-    name = request.form.get("name")
-    lastname = request.form.get("lastname")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    image = request.form.get("image")
+    try:
+        name = request.form.get("name")
+        lastname = request.form.get("lastname")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        image = request.form.get("image")
 
-    put_user(id,name,lastname,email,image, password)
+        put_user(id,name,lastname,email,image, password)
 
-    return jsonify({
-        "success": True,
-        "message": "Usuario actualizado"
-    })
+        return jsonify({"success": True,"message": "Usuario actualizado"}), 200
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @admin_user_bp.route("/admin/users/delete/<id>", methods=["POST"])
 @login_required
 def delete_user_route(id):
-    success = delete_user(id)
-    if not success:
-            return jsonify({
-                "success": False,
-                "message": "Usuario no encontrado"
-            })
-    return jsonify({
-        "success": True,
-        "message": "Usuario eliminado"
-    })
+    try:
+        success = delete_user(id)
+        if not success:
+            return jsonify({"success": False, "message": "Usuario no encontrado"})
+        
+        return jsonify({"success": True, "message": "Usuario eliminado"}), 204
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500

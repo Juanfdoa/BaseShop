@@ -1,11 +1,9 @@
-/* ── GRID DE KPIs ── */
 .kpi-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
-/* ── CARD KPI ── */
 .kpi-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -14,27 +12,23 @@
     transition: all 0.2s ease;
 }
 
-/* HOVER SUAVE */
 .kpi-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(0,0,0,0.05);
 }
 
-/* TITULO */
 .kpi-card h4 {
     font-size: 13px;
     color: var(--color-text-secondary);
     margin-bottom: 0.6rem;
 }
 
-/* VALOR GRANDE */
 .kpi-card p {
     font-size: 28px;
     font-weight: 600;
     color: var(--color-text-primary);
 }
 
-/* OPCIONAL: ICONO */
 .kpi-icon {
     width: 40px;
     height: 40px;
@@ -47,8 +41,6 @@
     color: var(--color-primary);
     font-size: 18px;
 }
-
-/* ── RESPONSIVE ── */
 
 /* TABLET */
 @media (max-width: 1024px) {

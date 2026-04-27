@@ -1,10 +1,21 @@
 import uuid
+import bleach
 from app import db
 from sqlalchemy import func
 from app.models.product import Product
 from app.models.category import Category
 from app.services.external_services import upload_image
 
+ALLOWED_TAGS = [
+    'b', 'br'
+]
+
+def clean_description(html):
+    return bleach.clean(
+        html,
+        tags=ALLOWED_TAGS,
+        strip=True
+    )
 
 def get_products(search=None, category=Category, page=1, per_page=8):
     query = Product.query

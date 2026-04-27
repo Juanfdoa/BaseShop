@@ -244,10 +244,6 @@
     background: var(--color-border);
 }
 
-/* ───────────────────────────── */
-/* RESPONSIVE */
-/* ───────────────────────────── */
-
 /* TABLET */
 @media (max-width: 768px) {
     .contact-grid {

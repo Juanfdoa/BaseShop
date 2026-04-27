@@ -1,7 +1,4 @@
-<form class="ajax-form"
-      action="{{ url_for('admin_user.create_user') if not user else url_for('admin_user.update_user', id=user.id) }}"
-      method="POST">
-
+<form class="ajax-form" action="{{ url_for('admin_user.create_user') if not user else url_for('admin_user.update_user', id=user.id) }}" method="POST">
     <input name="name" placeholder="Nombre" value="{{ user.name if user else '' }}" required />
     <input name="lastname" placeholder="Apellido" value="{{ user.lastname if user else '' }}" required />
     <input type="email" name="email" placeholder="Email" value="{{ user.email if user else '' }}" required />
@@ -18,5 +15,4 @@
     <button type="submit">
         {{ "Actualizar" if user else "Guardar" }}
     </button>
-
 </form>

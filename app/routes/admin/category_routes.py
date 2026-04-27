@@ -7,8 +7,11 @@ admin_category_bp = Blueprint('admin_category', __name__)
 @admin_category_bp.route('/admin/categories')
 @login_required
 def categories():
-    categories = get_categories()
-    return render_template('admin/categories.html', categories=categories)
+    try:
+        categories = get_categories()
+        return render_template('admin/categories.html', categories=categories)
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @admin_category_bp.route("/admin/categories/form")
 @login_required
@@ -18,54 +21,52 @@ def category_form():
 @admin_category_bp.route("/admin/categories/create", methods=["POST"])
 @login_required
 def create_category():
-    name = request.form.get("name")
-    icon = request.form.get("icon")
+    try:
+        name = request.form.get("name")
+        icon = request.form.get("icon")
 
-    new_category = add_category(name, icon)
-    html = render_template("components/accordion.html", item=new_category)
+        new_category = add_category(name, icon)
+        html = render_template("components/accordion.html", item=new_category)
 
-    return jsonify({
-        "success": True,
-        "html": html
-    })
+        return jsonify({"success": True,"html": html}), 201
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @admin_category_bp.route("/admin/categories/form", defaults={"id": None})
 @admin_category_bp.route("/admin/categories/form/<id>")
 @login_required
 def category_form_update(id):
+    try:
+        category = None
 
-    print('ENTRO AL PUT')
-    print(id)
-    category = None
+        if id:
+            category = get_category_by_id(id)
 
-    if id:
-        category = get_category_by_id(id)
-
-    return render_template("components/forms/category_form.html", category=category)
+        return render_template("components/forms/category_form.html", category=category)
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @admin_category_bp.route("/admin/categories/update/<id>", methods=["POST"])
 @login_required
 def update_category(id):
-    name = request.form.get("name")
-    icon = request.form.get("icon")
+    try:
+        name = request.form.get("name")
+        icon = request.form.get("icon")
 
-    put_category(id,name,icon)
+        put_category(id,name,icon)
 
-    return jsonify({
-        "success": True,
-        "message": "Categoria actualizada"
-    })
+        return jsonify({"success": True,"message": "Categoria actualizada"}), 200
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @admin_category_bp.route("/admin/categories/delete/<id>", methods=["POST"])
 @login_required
 def delete_category_route(id):
-    success = delete_category(id)
-    if not success:
-            return jsonify({
-                "success": False,
-                "message": "Categoria no encontrada"
-            })
-    return jsonify({
-        "success": True,
-        "message": "Categoria eliminada"
-    })
+    try:
+        success = delete_category(id)
+        if not success:
+            return jsonify({"success": False,"message": "Categoria no encontrada"})
+        
+        return jsonify({"success": True, "message": "Categoria eliminada"}), 204
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500

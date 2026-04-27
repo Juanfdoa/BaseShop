@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 from app.services.category_service import get_categories
 from app.services.product_service import get_products, get_product_by_id, get_trend_products
 
@@ -6,22 +6,26 @@ store_bp = Blueprint('store', __name__)
 
 @store_bp.route('/')
 def home():
-    categories = get_categories()
-    trend_products = get_trend_products()
-    return render_template('store/home.html', categories=categories, featured=trend_products)
+    try:
+        categories = get_categories()
+        trend_products = get_trend_products()
+        return render_template('store/home.html', categories=categories, featured=trend_products)
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @store_bp.route('/products')
 def products():
-    page = request.args.get("page", 1, type=int)
-    search = request.args.get('search', None)
-    category = request.args.get('category', None)
+    try:
+        page = request.args.get("page", 1, type=int)
+        search = request.args.get('search', None)
+        category = request.args.get('category', None)
 
-    result = get_products(
-        search=search, category=category, page=page
-    )
-    categories = get_categories()
-    
-    return render_template('store/products.html', products=result.items, categories=categories, pagination=result)
+        result = get_products(search=search, category=category, page=page)
+        categories = get_categories()
+        
+        return render_template('store/products.html', products=result.items, categories=categories, pagination=result)
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @store_bp.route('/product/<product_id>')
 def producto(product_id):

@@ -1,44 +1,38 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-</head>
-<body>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    </head>
 
-<div class="login-wrapper">
+    <body>
+        <div class="login-wrapper">
+            <div class="login-left">
+                <div class="login-image-wrapper">
+                    <img src="{{ url_for('static', filename='images/baseLogo.png') }}" alt="Login image">
+                </div>
+            </div>
 
-    <!-- LADO IZQUIERDO (IMAGEN / HERO) -->
-    <div class="login-left">
-        <div class="login-image-wrapper">
-            <img src="{{ url_for('static', filename='images/baseLogo.png') }}" alt="Login image">
+            <div class="login-right">
+                <div class="login-card">
+                    <h2>Iniciar sesión</h2>
+                    <form method="POST">
+                        <input type="email" name="email" placeholder="Correo electrónico" required>
+                        <input type="password" name="password" placeholder="Contraseña" required>
+                        <button type="submit">Entrar</button>
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div class="alert">
+                                    {{ messages[0] }}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <!-- LADO DERECHO (FORM) -->
-    <div class="login-right">
-        <div class="login-card">
-            <h2>Iniciar sesión</h2>
-            <form method="POST">
-                <input type="email" name="email" placeholder="Correo electrónico" required>
-                <input type="password" name="password" placeholder="Contraseña" required>
-                <button type="submit">Entrar</button>
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <div class="alert">
-                            {{ messages[0] }}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-            </form>
-
-        </div>
-    </div>
-
-</div>
-
-</body>
+    </body>
 </html>

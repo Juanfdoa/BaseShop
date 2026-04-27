@@ -194,10 +194,6 @@
     color: var(--color-text-muted);
 }
 
-/* ───────────────────────────── */
-/* RESPONSIVE */
-/* ───────────────────────────── */
-
 /* TABLET */
 @media (max-width: 768px) {
     .stats        { grid-template-columns: 1fr; }

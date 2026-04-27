@@ -10,22 +10,13 @@
 {% block content %}
     <div class="user-container">
         <div class="user-header">
-            <!-- BOTÓN AGREGAR -->
-            <button
-                data-modal
-                data-title="Crear usuario"
-                data-url="{{ url_for('admin_user.user_form') }}"
-                class="btn-add">
-                + Agregar Usuario
-            </button>
+            <button data-modal data-title="Crear usuario" data-url="{{ url_for('admin_user.user_form') }}" class="btn-add">+ Agregar Usuario </button>
         </div>
-    <!-- LISTA -->
-        {% from "components/accordion.html" import render_items %}
 
+        {% from "components/accordion.html" import render_items %}
         {% for user in users %}
             {{ render_items(user, "user") }}
         {% endfor %}
-
     </div>
 {% endblock %}
 

@@ -10,13 +10,10 @@
 </head>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    document.body.classList.add("loaded");
-});
+    document.addEventListener("DOMContentLoaded", () => {document.body.classList.add("loaded");});
 </script>
 
 <body>
-
    <nav>
         <div class="nav-logo">
             <a href="/">
@@ -25,16 +22,17 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="nav-links">
-            <a href="/">{{ t('home') }}</a>
-            <a href="/products">{{ t('products') }}</a>
-            <a href="/about_us">{{ t('about_us') }}</a>
-            <a href="/contact">{{ t('contact') }}</a>
+            <a href="/">Inicio</a>
+            <a href="/products">Productos</a>
+            <a href="/about_us">Nosotros</a>
+            <a href="/contact">Contáctanos</a>
         </div>  
 
+        <!-- TRANSLATION
         <div class="lang-switch">
             <a href="?lang=es">ES |</a> 
             <a href="?lang=en">EN</a>
-        </div>  
+        </div>  -->
     </nav>
 
     <main>
