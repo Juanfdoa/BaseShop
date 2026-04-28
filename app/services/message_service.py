@@ -5,7 +5,7 @@ from app.models.message import Message
 
 
 def get_messages():
-    return Message.query.order_by(Message.updated_at.desc()).all()
+    return Message.query.order_by(Message.created_at.desc()).all()
 
 def get_message_by_id(id):
     return Message.query.get(id)

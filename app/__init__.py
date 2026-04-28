@@ -10,6 +10,7 @@ from app.routes.admin.dashboard_routes import admin_dashboard_bp
 from app.routes.admin.user_routes import admin_user_bp
 from app.routes.admin.category_routes import admin_category_bp
 from app.routes.admin.product_routes import admin_product_bp
+from app.routes.admin.messages_routes import admin_messages_bp
 
 def create_app():
     app = Flask(__name__)
@@ -46,5 +47,6 @@ def create_app():
     app.register_blueprint(admin_user_bp)
     app.register_blueprint(admin_category_bp)
     app.register_blueprint(admin_product_bp)
+    app.register_blueprint(admin_messages_bp)
 
     return app
