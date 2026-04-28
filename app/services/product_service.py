@@ -1,5 +1,6 @@
 import uuid
 import bleach
+from datetime import datetime
 from app import db
 from sqlalchemy import func
 from app.models.product import Product
@@ -32,14 +33,14 @@ def get_products(search=None, category=Category, page=1, per_page=8):
             func.lower(Category.name).like(f"%{category}%")
         )
 
-
+    query = query.order_by(Product.updated_at.desc())
     return query.paginate(page=page, per_page=per_page, error_out=False)
 
 def get_product_by_id(id):
     return Product.query.filter_by(id=id).first()
 
 def get_trend_products():
-    return  Product.query.filter_by(trend=True).all()
+    return  Product.query.filter_by(trend=True).order_by(Product.updated_at.desc()).all()
 
 def add_product(category_id, name, description, price, brand, image, trend =False):
 
@@ -53,7 +54,9 @@ def add_product(category_id, name, description, price, brand, image, trend =Fals
         price = price,
         brand = brand,
         image = image_url,
-        trend = trend
+        trend = trend,
+        created_at = datetime.now(),
+        updated_at = datetime.now()
     )
 
     db.session.add(product)
@@ -85,6 +88,8 @@ def put_product(id, category_id, name, description, price, brand, image, current
     product.brand = brand
     product.image = image_url
     product.trend = trend
+    product.created_at = product.created_at
+    product.updated_at = datetime.now()
     
     db.session.commit()
 

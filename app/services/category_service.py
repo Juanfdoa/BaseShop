@@ -4,7 +4,7 @@ from app.models.category import Category
 
 
 def get_categories():
-    return Category.query.all()
+    return Category.query.order_by(Category.name).all()
 
 def get_category_by_id(id):
     return Category.query.get(id)

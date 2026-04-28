@@ -1,4 +1,5 @@
 from app.extensions import db
+from sqlalchemy.sql import func
 
 class Product(db.Model):
     __tablename__ = "Products"
@@ -10,6 +11,8 @@ class Product(db.Model):
     brand = db.Column(db.String)
     image = db.Column(db.String)
     trend = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
     # FK
     category_id = db.Column(db.String, db.ForeignKey("Categories.id"))

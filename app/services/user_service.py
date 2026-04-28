@@ -4,7 +4,7 @@ from app.models.user import User
 from werkzeug.security import generate_password_hash
 
 def get_users():
-    return User.query.all()
+    return User.query.order_by(User.name).all()
 
 def get_user_by_id(id):
     return User.query.get(id)
