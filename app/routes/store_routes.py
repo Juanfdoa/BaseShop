@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify
 from app.services.category_service import get_categories
 from app.services.product_service import get_products, get_product_by_id, get_trend_products
+from app.services.message_service import add_message
 
 store_bp = Blueprint('store', __name__)
 
@@ -43,3 +44,22 @@ def about_us():
 @store_bp.route('/contact')
 def contact():
     return render_template('store/contact.html')
+
+@store_bp.route("/contact", methods=["GET", "POST"])
+def submit_contact():
+    if request.method == "POST":
+        try:
+            name = request.form.get("name")
+            lastname = request.form.get("lastname")
+            email = request.form.get("email")
+            subject = request.form.get("subject")
+            message = request.form.get("message")
+
+            add_message(name, lastname, email, subject, message)
+
+            return render_template("store/contact.html", success=True)
+
+        except Exception as e:
+            return jsonify({"success": False, "error": str(e)}), 500
+
+    return render_template("store/contact.html")
