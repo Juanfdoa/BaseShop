@@ -18,28 +18,28 @@
                 <div class="msg-avatar">{{ msg.name[:1]|upper }}{{ msg.lastname[:1]|upper }}</div>
                 <div class="msg-meta">
                     <div class="msg-name">{{ msg.name }} {{ msg.lastname }}</div>
-                    <div class="msg-preview">{{ msg.message[:60] }}...</div>
+                    <div class="msg-preview">{{ msg.subject }}</div>
                 </div>
                 <div class="msg-right">
-                    <span class="msg-date">{{ msg.date }}</span>
+                    <span class="msg-date">{{ msg.created_at.strftime("%d/%m/%Y %H:%M") }}</span>
                     <svg class="msg-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                     <polyline points="4,6 8,10 12,6"/>
                     </svg>
                 </div>
                 </div>
                 <div class="msg-body">
-                <div class="msg-email-row">
-                    <span class="email-label">Email:</span>
-                    <a class="email-link" href="mailto:{{ msg.email }}">{{ msg.email }}</a>
-                    <a class="reply-btn" href="mailto:{{ msg.email }}?subject=Re: Consulta desde el sitio web">
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <polyline points="9,2 14,7 9,12"/>
-                        <path d="M2,14 L2,10 C2,8 4,7 7,7 L14,7"/>
-                    </svg>
-                        Responder
-                    </a>
-                </div>
-                <div class="msg-text">{{ msg.message }}</div>
+                    <div class="msg-email-row">
+                        <span class="email-label">Email:</span>
+                        <a class="email-link" href="mailto:{{ msg.email }}">{{ msg.email }}</a>
+                        <a class="reply-btn" href="mailto:{{ msg.email }}?subject=Re: Consulta desde el sitio web">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polyline points="9,2 14,7 9,12"/>
+                            <path d="M2,14 L2,10 C2,8 4,7 7,7 L14,7"/>
+                        </svg>
+                            Responder
+                        </a>
+                    </div>
+                    <div class="msg-text">{{ msg.message }}</div>
                 </div>
             </div>
         {% endfor %}
